@@ -2,55 +2,55 @@
 
 # 🚀 Framework
 
-**یک فریمورک جامع و قدرتمند برای ساخت اپلیکیشن‌های Go با معماری Clean Architecture و Domain-Driven Design**
+**A comprehensive and powerful framework for building Go applications with Clean Architecture and Domain-Driven Design**
 
 [![Go Version](https://img.shields.io/badge/Go-1.25.1+-00ADD8?style=for-the-badge&logo=go)](https://golang.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ali-mahdavi-dev/framework?style=for-the-badge)](https://goreportcard.com/report/github.com/ali-mahdavi-dev/framework)
 
-[📖 مستندات](#-مستندات) • [🚀 شروع سریع](#-شروع-سریع) • [💡 مثال‌ها](#-مثال‌ها) • [🏗️ معماری](#️-معماری) • [🤝 مشارکت](#-مشارکت)
+[📖 Documentation](#-documentation) • [🚀 Quick Start](#-quick-start) • [💡 Examples](#-examples) • [🏗️ Architecture](#️-architecture) • [🤝 Contributing](#-contributing)
 
 ---
 
 </div>
 
-## 📋 فهرست مطالب
+## 📋 Table of Contents
 
-- [✨ ویژگی‌ها](#-ویژگی‌ها)
-- [🏗️ معماری](#️-معماری)
-- [🔧 زیرساخت‌ها](#-زیرساخت‌ها)
-- [🛠️ ابزارها](#️-ابزارها)
-- [🚀 شروع سریع](#-شروع-سریع)
-- [💡 مثال‌ها](#-مثال‌ها)
-- [📁 ساختار پروژه](#-ساختار-پروژه)
-- [📦 وابستگی‌ها](#-وابستگی‌ها)
-- [📖 مستندات](#-مستندات)
-- [🤝 مشارکت](#-مشارکت)
-
----
-
-## ✨ ویژگی‌ها
-
-این فریمورک با هدف ارائه یک راه‌حل کامل و حرفه‌ای برای ساخت اپلیکیشن‌های Go طراحی شده است. با استفاده از بهترین الگوها و معماری‌های موجود، توسعه‌دهندگان می‌توانند اپلیکیشن‌های مقیاس‌پذیر و قابل نگهداری بسازند.
-
-### 🎯 مزایای کلیدی
-
-- ✅ **معماری تمیز**: جداسازی کامل لایه‌ها و وابستگی‌ها
-- ✅ **مقیاس‌پذیری**: طراحی شده برای اپلیکیشن‌های بزرگ و پیچیده
-- ✅ **قابلیت تست**: ساختار مناسب برای Unit Testing و Integration Testing
-- ✅ **عملکرد بالا**: بهینه‌سازی شده برای کارایی و سرعت
-- ✅ **مستندات کامل**: مثال‌ها و مستندات جامع
-- ✅ **انعطاف‌پذیری**: قابل سفارشی‌سازی و توسعه
+- [✨ Features](#-features)
+- [🏗️ Architecture](#️-architecture)
+- [🔧 Infrastructure](#-infrastructure)
+- [🛠️ Tools](#️-tools)
+- [🚀 Quick Start](#-quick-start)
+- [💡 Examples](#-examples)
+- [📁 Project Structure](#-project-structure)
+- [📦 Dependencies](#-dependencies)
+- [📖 Documentation](#-documentation)
+- [🤝 Contributing](#-contributing)
 
 ---
 
-## 🏗️ معماری
+## ✨ Features
 
-این فریمورک از معماری‌های مدرن و الگوهای طراحی پیشرفته پشتیبانی می‌کند:
+This framework is designed to provide a complete and professional solution for building Go applications. By leveraging the best patterns and architectures available, developers can build scalable and maintainable applications.
+
+### 🎯 Key Benefits
+
+- ✅ **Clean Architecture**: Complete separation of layers and dependencies
+- ✅ **Scalability**: Designed for large and complex applications
+- ✅ **Testability**: Proper structure for Unit Testing and Integration Testing
+- ✅ **High Performance**: Optimized for efficiency and speed
+- ✅ **Comprehensive Documentation**: Extensive examples and documentation
+- ✅ **Flexibility**: Customizable and extensible
+
+---
+
+## 🏗️ Architecture
+
+This framework supports modern architectures and advanced design patterns:
 
 ### 🏛️ Clean Architecture
 
-جداسازی کامل لایه‌ها با وابستگی‌های یک‌طرفه به سمت Domain Layer
+Complete layer separation with unidirectional dependencies toward the Domain Layer
 
 ```
 ┌─────────────────────────────────────┐
@@ -60,107 +60,107 @@
 ├─────────────────────────────────────┤
 │      Domain Layer (Business Logic)  │
 ├─────────────────────────────────────┤
-│   Infrastructure Layer (Database)   │
+│   Infrastructure Layer (Database)  │
 └─────────────────────────────────────┘
 ```
 
 ### 📐 Domain-Driven Design (DDD)
 
-- **Entities**: موجودیت‌های Domain با شناسه یکتا
-- **Value Objects**: اشیاء بدون شناسه
-- **Aggregates**: گروه‌بندی Entities و Value Objects
-- **Domain Events**: رویدادهای Domain برای ارتباط بین Bounded Contexts
-- **Repositories**: الگوی دسترسی به داده
+- **Entities**: Domain entities with unique identifiers
+- **Value Objects**: Objects without identity
+- **Aggregates**: Grouping of Entities and Value Objects
+- **Domain Events**: Domain events for communication between Bounded Contexts
+- **Repositories**: Data access pattern
 
 ### ⚡ CQRS (Command Query Responsibility Segregation)
 
-جداسازی عملیات خواندن و نوشتن برای بهینه‌سازی عملکرد:
+Separation of read and write operations for performance optimization:
 
-- **Commands**: عملیات تغییردهنده State
-- **Queries**: عملیات خواندن داده
-- **Event Handlers**: پردازش رویدادها
+- **Commands**: State-changing operations
+- **Queries**: Data reading operations
+- **Event Handlers**: Event processing
 
 ### 🔄 Event Sourcing
 
-- مدیریت رویدادها و Domain Events
-- بازسازی State از رویدادها
-- Audit Trail کامل
+- Event and Domain Event management
+- State reconstruction from events
+- Complete audit trail
 
 ### 🔒 Unit of Work Pattern
 
-مدیریت تراکنش‌ها و تضمین Consistency
+Transaction management and consistency guarantee
 
 ### 📚 Repository Pattern
 
-الگوی دسترسی به داده با جداسازی منطق Business از دسترسی به داده
+Data access pattern with separation of business logic from data access
 
 ---
 
-## 🔧 زیرساخت‌ها
+## 🔧 Infrastructure
 
-فریمورک از طیف گسترده‌ای از تکنولوژی‌های زیرساختی پشتیبانی می‌کند:
+The framework supports a wide range of infrastructure technologies:
 
-| تکنولوژی             | توضیحات                      | استفاده                  |
-| -------------------- | ---------------------------- | ------------------------ |
-| 🗄️ **PostgreSQL**    | دیتابیس رابطه‌ای قدرتمند     | ذخیره‌سازی داده‌های اصلی |
-| 💾 **SQLite**        | دیتابیس سبک و سریع           | توسعه و تست              |
-| ⚡ **Redis**         | Cache و Session Management   | بهبود عملکرد             |
-| 🔍 **Elasticsearch** | موتور جستجو و تحلیل          | جستجوی پیشرفته           |
-| 📨 **Kafka**         | پیام‌رسانی و Event Streaming | ارتباط Asynchronous      |
-| 🔌 **WebSocket**     | ارتباط Real-time             | با Socket.IO             |
-| 📊 **Jaeger**        | Distributed Tracing          | ردیابی و Debugging       |
-| 📝 **Zerolog**       | Logger سریع و ساختاریافته    | لاگ‌گیری                 |
+| Technology           | Description                   | Usage                      |
+| -------------------- | ----------------------------- | -------------------------- |
+| 🗄️ **PostgreSQL**    | Powerful relational database  | Primary data storage       |
+| 💾 **SQLite**        | Lightweight and fast database | Development and testing    |
+| ⚡ **Redis**         | Cache and Session Management  | Performance improvement    |
+| 🔍 **Elasticsearch** | Search engine and analytics   | Advanced search            |
+| 📨 **Kafka**         | Messaging and Event Streaming | Asynchronous communication |
+| 🔌 **WebSocket**     | Real-time communication       | With Socket.IO             |
+| 📊 **Jaeger**        | Distributed Tracing           | Tracking and Debugging     |
+| 📝 **Zerolog**       | Fast and structured logger    | Logging                    |
 
 ---
 
-## 🛠️ ابزارها
+## 🛠️ Tools
 
-### 🔐 احراز هویت و امنیت
+### 🔐 Authentication & Security
 
-- **JWT**: تولید و اعتبارسنجی Token
-- **Middleware**: Authentication و Authorization
-- **Validation**: اعتبارسنجی با `go-playground/validator`
+- **JWT**: Token generation and validation
+- **Middleware**: Authentication and Authorization
+- **Validation**: Validation with `go-playground/validator`
 
-### 🎯 مدیریت خطا
+### 🎯 Error Management
 
-- خطاهای ساختاریافته
-- کدهای خطای استاندارد
-- پیام‌های خطای چندزبانه
+- Structured errors
+- Standard error codes
+- Multilingual error messages
 
 ### 📋 Middleware
 
-- **Logger**: لاگ‌گیری درخواست‌ها
-- **Request ID**: ردیابی درخواست‌ها
-- **Tracing**: ردیابی با OpenTelemetry
+- **Logger**: Request logging
+- **Request ID**: Request tracking
+- **Tracing**: Tracking with OpenTelemetry
 
-### 🧩 الگوهای طراحی
+### 🧩 Design Patterns
 
-- **Specification Pattern**: پیاده‌سازی Business Rules
-- **Message Bus**: مدیریت Command و Event Handlers
-- **Outbox Pattern**: تضمین تحویل پیام‌ها
+- **Specification Pattern**: Business Rules implementation
+- **Message Bus**: Command and Event Handler management
+- **Outbox Pattern**: Message delivery guarantee
 
 ---
 
-## 🚀 شروع سریع
+## 🚀 Quick Start
 
-### 📦 نصب
+### 📦 Installation
 
 ```bash
 go get github.com/ali-mahdavi-dev/framework
 ```
 
-### 🔧 پیش‌نیازها
+### 🔧 Prerequisites
 
-- Go 1.25.1 یا بالاتر
-- PostgreSQL (برای Production)
-- Redis (اختیاری - برای Cache)
-- Elasticsearch (اختیاری - برای جستجو)
+- Go 1.25.1 or higher
+- PostgreSQL (for Production)
+- Redis (optional - for Cache)
+- Elasticsearch (optional - for Search)
 
 ---
 
-## 💡 مثال‌ها
+## 💡 Examples
 
-### 📊 اتصال به دیتابیس
+### 📊 Database Connection
 
 ```go
 package main
@@ -185,11 +185,11 @@ func main() {
         log.Fatal("Failed to connect to database:", err)
     }
 
-    // استفاده از db...
+    // Use db...
 }
 ```
 
-### 📝 استفاده از Logger
+### 📝 Using Logger
 
 ```go
 package main
@@ -199,17 +199,17 @@ import (
 )
 
 func main() {
-    // استفاده از Logger با Builder Pattern
+    // Using Logger with Builder Pattern
     logging.Info("User logged in").
         WithString("user_id", "123").
         WithString("ip", "192.168.1.1").
         WithInt("status_code", 200).
         Log()
 
-    // یا با Format
+    // Or with Format
     logging.Infof("Processing request: %s", requestID)
 
-    // لاگ خطا
+    // Error logging
     logging.Error("Failed to process request").
         WithString("error", err.Error()).
         Log()
@@ -222,10 +222,11 @@ func main() {
 package main
 
 import (
+    "gorm.io/gorm"
     "github.com/ali-mahdavi-dev/framework/adapter"
 )
 
-// تعریف Entity
+// Define Entity
 type User struct {
     adapter.BaseEntity
     ID    uint64 `gorm:"primaryKey"`
@@ -233,14 +234,14 @@ type User struct {
     Email string
 }
 
-// تعریف Repository Interface
+// Define Repository Interface
 type UserRepository interface {
     adapter.BaseRepository[User]
     FindByEmail(email string) (*User, error)
     FindActiveUsers() ([]User, error)
 }
 
-// پیاده‌سازی Repository
+// Implement Repository
 type userRepository struct {
     adapter.GormRepository[User]
 }
@@ -268,28 +269,28 @@ import (
     "github.com/ali-mahdavi-dev/framework/service_layer/command_event_handler"
 )
 
-// تعریف Command
+// Define Command
 type CreateUserCommand struct {
     Name  string `validate:"required,min=3"`
     Email string `validate:"required,email"`
 }
 
-// ایجاد Handler
+// Create Handler
 func setupUserHandlers() {
     handler := commandeventhandler.NewCommandHandler[CreateUserCommand](
         func(ctx context.Context, cmd *CreateUserCommand) error {
-            // منطق ایجاد کاربر
+            // User creation logic
             user := &User{
                 Name:  cmd.Name,
                 Email: cmd.Email,
             }
 
-            // ذخیره در دیتابیس
+            // Save to database
             return userRepo.Create(ctx, user)
         },
     )
 
-    // ثبت Handler
+    // Register Handler
     messageBus.RegisterCommandHandler(handler)
 }
 ```
@@ -306,7 +307,7 @@ import (
 
 func generateToken(userID uint64) (string, error) {
     token, err := jwt.GenerateToken(
-        24*time.Hour,           // مدت اعتبار
+        24*time.Hour,           // Expiration time
         "your-secret-key",      // Secret Key
         userID,                 // User ID
     )
@@ -330,6 +331,7 @@ func validateToken(tokenString string) (uint64, error) {
 package main
 
 import (
+    "log"
     apperrors "github.com/ali-mahdavi-dev/framework/errors"
 )
 
@@ -347,13 +349,13 @@ func validateEmail(email string) error {
 func handleError(err error) {
     switch e := err.(type) {
     case *apperrors.ValidationError:
-        // مدیریت خطای اعتبارسنجی
+        // Handle validation error
         log.Printf("Validation error: %s", e.Message)
     case *apperrors.NotFoundError:
-        // مدیریت خطای پیدا نشدن
+        // Handle not found error
         log.Printf("Not found: %s", e.Message)
     default:
-        // مدیریت خطای عمومی
+        // Handle general error
         log.Printf("Error: %v", err)
     }
 }
@@ -365,10 +367,11 @@ func handleError(err error) {
 package main
 
 import (
+    "time"
     "github.com/ali-mahdavi-dev/framework/specification"
 )
 
-// تعریف Specification
+// Define Specification
 type ActiveUserSpec struct{}
 
 func (s *ActiveUserSpec) IsSatisfiedBy(user User) bool {
@@ -381,7 +384,7 @@ func (s *PremiumUserSpec) IsSatisfiedBy(user User) bool {
     return user.IsPremium && user.SubscriptionExpiresAt.After(time.Now())
 }
 
-// استفاده از Specification
+// Using Specification
 func filterUsers(users []User) []User {
     activeSpec := specification.NewBuilder(&ActiveUserSpec{})
     premiumSpec := specification.NewBuilder(&PremiumUserSpec{})
@@ -399,17 +402,17 @@ func filterUsers(users []User) []User {
 
 ---
 
-## 📁 ساختار پروژه
+## 📁 Project Structure
 
 ```
 framework/
-├── 📂 adapter/                    # رابط‌های Repository و Unit of Work
+├── 📂 adapter/                    # Repository and Unit of Work interfaces
 │   ├── interface_entity.go
 │   ├── interface_gorm_repository.go
 │   ├── interface_repository.go
 │   └── unit_of_work.go
 │
-├── 📂 api/                        # ابزارهای HTTP، JWT و Middleware
+├── 📂 api/                        # HTTP utilities, JWT, and Middleware
 │   ├── http/                      # HTTP Utilities
 │   │   ├── errors.go
 │   │   ├── schema.go
@@ -421,20 +424,20 @@ framework/
 │       ├── request_id.go
 │       └── tracing.go
 │
-├── 📂 errors/                     # مدیریت خطاهای ساختاریافته
+├── 📂 errors/                     # Structured error management
 │   ├── constructors.go
-│   ├── phrases/                   # پیام‌های خطا
+│   ├── phrases/                   # Error messages
 │   │   ├── error_code.go
 │   │   └── message.go
 │   ├── types.go
 │   └── utils.go
 │
-├── 📂 helpers/                    # توابع کمکی
+├── 📂 helpers/                    # Helper functions
 │   ├── jsonhelper/
 │   ├── kind/
 │   └── utils.go
 │
-├── 📂 infrastructure/             # اتصالات به سرویس‌های خارجی
+├── 📂 infrastructure/             # External service connections
 │   ├── databases/                 # PostgreSQL, SQLite
 │   │   └── postgres_connection.go
 │   ├── elasticsearch/             # Elasticsearch Client
@@ -453,7 +456,7 @@ framework/
 │   └── websocket/                 # Socket.IO
 │       └── socketio.go
 │
-├── 📂 service_layer/              # لایه سرویس
+├── 📂 service_layer/              # Service layer
 │   ├── cache/                     # Redis Cache
 │   │   └── redis_cache.go
 │   ├── command_event_handler/     # CQRS Handlers
@@ -476,85 +479,85 @@ framework/
 
 ---
 
-## 📦 وابستگی‌ها
+## 📦 Dependencies
 
-### اصلی
+### Core
 
-| پکیج               | نسخه    | توضیحات                   |
-| ------------------ | ------- | ------------------------- |
-| **Go**             | 1.25.1+ | زبان برنامه‌نویسی         |
-| **GORM**           | latest  | ORM برای دیتابیس          |
-| **Fiber**          | v3      | Web Framework             |
-| **Zerolog**        | latest  | Logger ساختاریافته        |
-| **Redis**          | v9      | Client برای Redis         |
-| **Elasticsearch**  | v8      | Client برای Elasticsearch |
-| **Kafka (Sarama)** | latest  | Client برای Kafka         |
-| **OpenTelemetry**  | latest  | Distributed Tracing       |
-| **Socket.IO**      | latest  | WebSocket Communication   |
-| **JWT**            | v5      | احراز هویت                |
+| Package            | Version | Description              |
+| ------------------ | ------- | ------------------------ |
+| **Go**             | 1.25.1+ | Programming language     |
+| **GORM**           | latest  | ORM for database         |
+| **Fiber**          | v3      | Web Framework            |
+| **Zerolog**        | latest  | Structured logger        |
+| **Redis**          | v9      | Client for Redis         |
+| **Elasticsearch**  | v8      | Client for Elasticsearch |
+| **Kafka (Sarama)** | latest  | Client for Kafka         |
+| **OpenTelemetry**  | latest  | Distributed Tracing      |
+| **Socket.IO**      | latest  | WebSocket Communication  |
+| **JWT**            | v5      | Authentication           |
 
-### جزئیات
+### Details
 
-برای مشاهده لیست کامل وابستگی‌ها، فایل `go.mod` را بررسی کنید.
+For the complete list of dependencies, check the `go.mod` file.
 
 ---
 
-## 📖 مستندات
+## 📖 Documentation
 
-### 🎓 یادگیری
+### 🎓 Learning Resources
 
-- [Clean Architecture در Go](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+- [Clean Architecture in Go](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - [Domain-Driven Design](https://martinfowler.com/bliki/DomainDrivenDesign.html)
 - [CQRS Pattern](https://martinfowler.com/bliki/CQRS.html)
 
-### 📚 منابع بیشتر
+### 📚 Additional Resources
 
-- مستندات کامل در حال آماده‌سازی است
-- مثال‌های بیشتر در پوشه `examples/` (به زودی)
-
----
-
-## 🤝 مشارکت
-
-مشارکت‌ها، Issues و Pull Request‌ها خوش‌آمد هستند! برای مشارکت:
-
-1. ⭐ این پروژه را Star کنید
-2. 🍴 Fork کنید
-3. 🌿 یک Branch جدید ایجاد کنید (`git checkout -b feature/AmazingFeature`)
-4. 💾 تغییرات را Commit کنید (`git commit -m 'Add some AmazingFeature'`)
-5. 📤 Branch را Push کنید (`git push origin feature/AmazingFeature`)
-6. 🔄 یک Pull Request باز کنید
-
-### 📝 دستورالعمل‌های مشارکت
-
-- کد را با `gofmt` فرمت کنید
-- تست‌ها را اضافه کنید
-- مستندات را به‌روز کنید
-- از Commit Message های واضح استفاده کنید
+- Complete documentation is being prepared
+- More examples in the `examples/` folder (coming soon)
 
 ---
 
-## 📄 مجوز
+## 🤝 Contributing
 
-این پروژه تحت مجوز **MIT** منتشر شده است. برای جزئیات بیشتر، فایل `LICENSE` را مطالعه کنید.
+Contributions, issues, and pull requests are welcome! To contribute:
+
+1. ⭐ Star this project
+2. 🍴 Fork it
+3. 🌿 Create a new branch (`git checkout -b feature/AmazingFeature`)
+4. 💾 Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+5. 📤 Push to the branch (`git push origin feature/AmazingFeature`)
+6. 🔄 Open a Pull Request
+
+### 📝 Contribution Guidelines
+
+- Format code with `gofmt`
+- Add tests
+- Update documentation
+- Use clear commit messages
 
 ---
 
-## 👤 نویسنده
+## 📄 License
+
+This project is licensed under the **MIT License**. For more details, see the `LICENSE` file.
+
+---
+
+## 👤 Author
 
 **Ali Mahdavi**
 
 - 🌐 GitHub: [@ali-mahdavi-dev](https://github.com/ali-mahdavi-dev)
-- 📧 Email: [در حال آماده‌سازی]
+- 📧 Email: [Coming soon]
 
 ---
 
 <div align="center">
 
-### ⭐ اگر این پروژه برای شما مفید بود، یک Star بدهید!
+### ⭐ If this project was helpful to you, give it a star!
 
-**ساخته شده با ❤️ در ایران**
+**Made with ❤️ in Iran**
 
-[⬆ به بالا برگردید](#-framework)
+[⬆ Back to top](#-framework)
 
 </div>
