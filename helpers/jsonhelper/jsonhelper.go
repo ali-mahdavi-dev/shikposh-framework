@@ -3,7 +3,7 @@ package jsonhelper
 import (
 	"encoding/json"
 
-	"github.com/ali-mahdavi-dev/framework/infrastructure/logging"
+	"github.com/ali-mahdavi-dev/shikposh-framework/infrastructure/logging"
 )
 
 func Encode[T any](t T) []byte {

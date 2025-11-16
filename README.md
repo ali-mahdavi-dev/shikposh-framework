@@ -6,7 +6,7 @@
 
 [![Go Version](https://img.shields.io/badge/Go-1.25.1+-00ADD8?style=for-the-badge&logo=go)](https://golang.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
-[![Go Report Card](https://goreportcard.com/badge/github.com/ali-mahdavi-dev/framework?style=for-the-badge)](https://goreportcard.com/report/github.com/ali-mahdavi-dev/framework)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ali-mahdavi-dev/shikposh-framework?style=for-the-badge)](https://goreportcard.com/report/github.com/ali-mahdavi-dev/shikposh-framework)
 
 [📖 Documentation](#-documentation) • [🚀 Quick Start](#-quick-start) • [💡 Examples](#-examples) • [🏗️ Architecture](#️-architecture) • [🤝 Contributing](#-contributing)
 
@@ -146,7 +146,7 @@ The framework supports a wide range of infrastructure technologies:
 ### 📦 Installation
 
 ```bash
-go get github.com/ali-mahdavi-dev/framework
+go get github.com/ali-mahdavi-dev/shikposh-framework
 ```
 
 ### 🔧 Prerequisites
@@ -167,7 +167,7 @@ package main
 
 import (
     "log"
-    "github.com/ali-mahdavi-dev/framework/infrastructure/databases"
+    "github.com/ali-mahdavi-dev/shikposh-framework/infrastructure/databases"
 )
 
 func main() {
@@ -195,7 +195,7 @@ func main() {
 package main
 
 import (
-    "github.com/ali-mahdavi-dev/framework/infrastructure/logging"
+    "github.com/ali-mahdavi-dev/shikposh-framework/infrastructure/logging"
 )
 
 func main() {
@@ -223,7 +223,7 @@ package main
 
 import (
     "gorm.io/gorm"
-    "github.com/ali-mahdavi-dev/framework/adapter"
+    "github.com/ali-mahdavi-dev/shikposh-framework/adapter"
 )
 
 // Define Entity
@@ -266,7 +266,7 @@ package main
 
 import (
     "context"
-    "github.com/ali-mahdavi-dev/framework/service_layer/command_event_handler"
+    "github.com/ali-mahdavi-dev/shikposh-framework/service_layer/command_event_handler"
 )
 
 // Define Command
@@ -302,7 +302,7 @@ package main
 
 import (
     "time"
-    "github.com/ali-mahdavi-dev/framework/api/jwt"
+    "github.com/ali-mahdavi-dev/shikposh-framework/api/jwt"
 )
 
 func generateToken(userID uint64) (string, error) {
@@ -332,7 +332,7 @@ package main
 
 import (
     "log"
-    apperrors "github.com/ali-mahdavi-dev/framework/errors"
+    apperrors "github.com/ali-mahdavi-dev/shikposh-framework/errors"
 )
 
 func validateEmail(email string) error {
@@ -368,7 +368,7 @@ package main
 
 import (
     "time"
-    "github.com/ali-mahdavi-dev/framework/specification"
+    "github.com/ali-mahdavi-dev/shikposh-framework/specification"
 )
 
 // Define Specification

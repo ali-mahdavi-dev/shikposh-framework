@@ -13,7 +13,7 @@ import (
 	semconv "go.opentelemetry.io/otel/semconv/v1.4.0"
 	"go.opentelemetry.io/otel/trace"
 
-	"github.com/ali-mahdavi-dev/framework/infrastructure/logging"
+	"github.com/ali-mahdavi-dev/shikposh-framework/infrastructure/logging"
 )
 
 type Config struct {

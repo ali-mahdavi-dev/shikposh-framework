@@ -4,7 +4,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/ali-mahdavi-dev/framework/infrastructure/logging"
+	"github.com/ali-mahdavi-dev/shikposh-framework/infrastructure/logging"
 )
 
 // Logging creates a middleware that logs command execution

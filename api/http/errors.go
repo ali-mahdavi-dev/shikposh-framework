@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/ali-mahdavi-dev/framework/errors"
-	"github.com/ali-mahdavi-dev/framework/errors/phrases"
+	"github.com/ali-mahdavi-dev/shikposh-framework/errors"
+	"github.com/ali-mahdavi-dev/shikposh-framework/errors/phrases"
 )
 
 // HTTPError is the HTTP-specific error representation

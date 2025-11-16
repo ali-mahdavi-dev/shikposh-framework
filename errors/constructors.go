@@ -3,7 +3,7 @@ package errors
 import (
 	"fmt"
 
-	"github.com/ali-mahdavi-dev/framework/errors/phrases"
+	"github.com/ali-mahdavi-dev/shikposh-framework/errors/phrases"
 )
 
 // New creates a new error with the given parameters

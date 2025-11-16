@@ -3,7 +3,7 @@ package websocket
 import (
 	"fmt"
 
-	"github.com/ali-mahdavi-dev/framework/infrastructure/logging"
+	"github.com/ali-mahdavi-dev/shikposh-framework/infrastructure/logging"
 
 	"github.com/golang-jwt/jwt/v5"
 	socketio "github.com/googollee/go-socket.io"

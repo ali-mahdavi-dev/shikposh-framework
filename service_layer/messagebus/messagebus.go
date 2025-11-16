@@ -6,11 +6,11 @@ import (
 	"reflect"
 	"sync"
 
-	"github.com/ali-mahdavi-dev/framework/adapter"
-	apperrors "github.com/ali-mahdavi-dev/framework/errors"
-	"github.com/ali-mahdavi-dev/framework/infrastructure/logging"
-	commandeventhandler "github.com/ali-mahdavi-dev/framework/service_layer/command_event_handler"
-	commandmiddleware "github.com/ali-mahdavi-dev/framework/service_layer/command_event_handler/command_middleware"
+	"github.com/ali-mahdavi-dev/shikposh-framework/adapter"
+	apperrors "github.com/ali-mahdavi-dev/shikposh-framework/errors"
+	"github.com/ali-mahdavi-dev/shikposh-framework/infrastructure/logging"
+	commandeventhandler "github.com/ali-mahdavi-dev/shikposh-framework/service_layer/command_event_handler"
+	commandmiddleware "github.com/ali-mahdavi-dev/shikposh-framework/service_layer/command_event_handler/command_middleware"
 )
 
 type MessageBus interface {

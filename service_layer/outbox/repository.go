@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/ali-mahdavi-dev/framework/adapter"
+	"github.com/ali-mahdavi-dev/shikposh-framework/adapter"
 
 	"gorm.io/gorm"
 )

@@ -6,7 +6,7 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/ali-mahdavi-dev/framework/service_layer/types"
+	"github.com/ali-mahdavi-dev/shikposh-framework/service_layer/types"
 )
 
 type txKey struct{}

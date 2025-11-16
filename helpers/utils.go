@@ -3,7 +3,7 @@ package helpers
 import (
 	"reflect"
 
-	"github.com/ali-mahdavi-dev/framework/helpers/kind"
+	"github.com/ali-mahdavi-dev/shikposh-framework/helpers/kind"
 )
 
 func ToPtr(val reflect.Value) reflect.Value {

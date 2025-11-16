@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/ali-mahdavi-dev/framework/infrastructure/logging"
+	"github.com/ali-mahdavi-dev/shikposh-framework/infrastructure/logging"
 )
 
 // MessagePublisher defines the interface for publishing messages to a message broker

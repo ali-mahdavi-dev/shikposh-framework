@@ -7,8 +7,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ali-mahdavi-dev/framework/infrastructure/redisx"
-	"github.com/ali-mahdavi-dev/framework/service_layer/types"
+	"github.com/ali-mahdavi-dev/shikposh-framework/infrastructure/redisx"
+	"github.com/ali-mahdavi-dev/shikposh-framework/service_layer/types"
 
 	"github.com/redis/go-redis/v9"
 	"github.com/spf13/cast"

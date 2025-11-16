@@ -3,7 +3,7 @@ package middleware
 import (
 	"time"
 
-	"github.com/ali-mahdavi-dev/framework/infrastructure/logging"
+	"github.com/ali-mahdavi-dev/shikposh-framework/infrastructure/logging"
 
 	"github.com/gofiber/fiber/v3"
 )

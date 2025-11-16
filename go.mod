@@ -1,4 +1,4 @@
-module github.com/ali-mahdavi-dev/framework
+module github.com/ali-mahdavi-dev/shikposh-framework
 
 go 1.25.1
 

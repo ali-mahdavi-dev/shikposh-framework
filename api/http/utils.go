@@ -8,8 +8,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/ali-mahdavi-dev/framework/errors"
-	"github.com/ali-mahdavi-dev/framework/errors/phrases"
+	"github.com/ali-mahdavi-dev/shikposh-framework/errors"
+	"github.com/ali-mahdavi-dev/shikposh-framework/errors/phrases"
 
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v3"
