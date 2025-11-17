@@ -537,12 +537,6 @@ Contributions, issues, and pull requests are welcome! To contribute:
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License**. For more details, see the `LICENSE` file.
-
----
-
 ## 👤 Author
 
 **Ali Mahdavi**
