@@ -63,7 +63,7 @@ func (w *Websocket) extractUserIDFromToken(tokenStr string) (uint64, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, jwt.ErrSignatureInvalid
 		}
-		return w.cfg.JWTSecret, nil
+		return []byte(w.cfg.JWTSecret), nil
 	})
 	if err != nil {
 		return 0, fmt.Errorf("Websocket.extractUserFromToken fail to pars token: %w", err)
