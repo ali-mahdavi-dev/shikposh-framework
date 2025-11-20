@@ -12,6 +12,7 @@ type Connection interface {
 	GetValue(ctx context.Context, key string) (string, error)
 	SetValue(ctx context.Context, key string, s string, exp time.Duration) error
 	DeleteKey(ctx context.Context, key string) error
+	ExistsKey(ctx context.Context, key string) (bool, error)
 }
 type connection struct {
 	client *redis.Client
