@@ -2,7 +2,6 @@ package middleware
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"time"
 
@@ -31,9 +30,6 @@ func DefaultStructuredLogger() fiber.Handler {
 
 		// Determine if this is an error response
 		isError := err != nil || status >= 400
-		fmt.Println("isError", isError)
-		fmt.Println("err", err)
-		fmt.Println("status", status)
 
 		// Create log entry based on error status
 		var entry logging.Logger
