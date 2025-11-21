@@ -18,6 +18,8 @@ type Connection interface {
 	DeleteDocument(ctx context.Context, index string, id string) error
 	Search(ctx context.Context, index string, query map[string]interface{}) (map[string]interface{}, error)
 	HealthCheck(ctx context.Context) error
+	CreateIndex(ctx context.Context, index string, mapping map[string]interface{}) error
+	IndexExists(ctx context.Context, index string) (bool, error)
 }
 
 type connection struct {
@@ -186,6 +188,60 @@ func (c *connection) HealthCheck(ctx context.Context) error {
 	if res.IsError() {
 		body, _ := io.ReadAll(res.Body)
 		return fmt.Errorf("elasticsearch health check failed: %s: %s", res.Status(), string(body))
+	}
+
+	return nil
+}
+
+func (c *connection) IndexExists(ctx context.Context, index string) (bool, error) {
+	res, err := c.client.Indices.Exists([]string{index})
+	if err != nil {
+		return false, fmt.Errorf("failed to check if index exists: %w", err)
+	}
+	defer res.Body.Close()
+
+	if res.StatusCode == 404 {
+		return false, nil
+	}
+
+	if res.IsError() {
+		body, _ := io.ReadAll(res.Body)
+		return false, fmt.Errorf("elasticsearch error: %s: %s", res.Status(), string(body))
+	}
+
+	return true, nil
+}
+
+func (c *connection) CreateIndex(ctx context.Context, index string, mapping map[string]interface{}) error {
+	// Check if index already exists
+	exists, err := c.IndexExists(ctx, index)
+	if err != nil {
+		return fmt.Errorf("failed to check if index exists: %w", err)
+	}
+
+	if exists {
+		return nil // Index already exists
+	}
+
+	// Create index with mapping
+	indexBody := map[string]interface{}{
+		"mappings": mapping,
+	}
+
+	jsonData, err := json.Marshal(indexBody)
+	if err != nil {
+		return fmt.Errorf("failed to marshal index mapping: %w", err)
+	}
+
+	res, err := c.client.Indices.Create(index, c.client.Indices.Create.WithBody(bytes.NewReader(jsonData)))
+	if err != nil {
+		return fmt.Errorf("failed to create index: %w", err)
+	}
+	defer res.Body.Close()
+
+	if res.IsError() {
+		body, _ := io.ReadAll(res.Body)
+		return fmt.Errorf("elasticsearch error: %s: %s", res.Status(), string(body))
 	}
 
 	return nil
