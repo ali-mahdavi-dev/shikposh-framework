@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"time"
 
 	"github.com/elastic/go-elasticsearch/v8"
 	"github.com/elastic/go-elasticsearch/v8/esapi"
@@ -40,13 +41,23 @@ func NewElasticsearchConnection(cfg Config) (*connection, error) {
 
 	conn := &connection{client: client}
 
-	// Test connection
+	// Test connection with retry (Elasticsearch might not be ready immediately)
 	ctx := context.Background()
-	if err := conn.HealthCheck(ctx); err != nil {
-		return nil, fmt.Errorf("failed to connect to elasticsearch: %w", err)
+	maxRetries := 5
+	retryDelay := 2 * time.Second
+
+	var lastErr error
+	for i := 0; i < maxRetries; i++ {
+		if err := conn.HealthCheck(ctx); err == nil {
+			return conn, nil
+		}
+		lastErr = err
+		if i < maxRetries-1 {
+			time.Sleep(retryDelay)
+		}
 	}
 
-	return conn, nil
+	return nil, fmt.Errorf("failed to connect to elasticsearch after %d retries: %w", maxRetries, lastErr)
 }
 
 type Config struct {
