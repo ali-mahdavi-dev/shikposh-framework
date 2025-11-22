@@ -44,13 +44,19 @@ func NewElasticsearchConnection(cfg Config) (*connection, error) {
 	conn := &connection{client: client}
 
 	// Test connection with retry (Elasticsearch might not be ready immediately)
+	// Use shorter retries to fail fast if Elasticsearch is not available
 	ctx := context.Background()
-	maxRetries := 5
-	retryDelay := 2 * time.Second
+	maxRetries := 2
+	retryDelay := 500 * time.Millisecond
 
 	var lastErr error
 	for i := 0; i < maxRetries; i++ {
-		if err := conn.HealthCheck(ctx); err == nil {
+		// Use a short timeout for each health check attempt
+		healthCtx, healthCancel := context.WithTimeout(ctx, 1*time.Second)
+		err := conn.HealthCheck(healthCtx)
+		healthCancel()
+
+		if err == nil {
 			return conn, nil
 		}
 		lastErr = err
