@@ -10,6 +10,7 @@ import (
 
 	"github.com/elastic/go-elasticsearch/v8"
 	"github.com/elastic/go-elasticsearch/v8/esapi"
+	"github.com/go-resty/resty/v2"
 )
 
 type Connection interface {
@@ -23,12 +24,18 @@ type Connection interface {
 }
 
 type connection struct {
-	client *elasticsearch.Client
+	client   *elasticsearch.Client
+	resty    *resty.Client
+	baseURL  string
+	username string
+	password string
 }
 
 func NewElasticsearchConnection(cfg Config) (*connection, error) {
+	baseURL := fmt.Sprintf("http://%s:%s", cfg.Host, cfg.Port)
+
 	esCfg := elasticsearch.Config{
-		Addresses: []string{fmt.Sprintf("http://%s:%s", cfg.Host, cfg.Port)},
+		Addresses: []string{baseURL},
 	}
 
 	if cfg.Username != "" && cfg.Password != "" {
@@ -41,7 +48,23 @@ func NewElasticsearchConnection(cfg Config) (*connection, error) {
 		return nil, fmt.Errorf("failed to create elasticsearch client: %w", err)
 	}
 
-	conn := &connection{client: client}
+	// Create resty client for Search operations
+	restyClient := resty.New().
+		SetBaseURL(baseURL).
+		SetTimeout(30*time.Second).
+		SetHeader("Content-Type", "application/json")
+
+	if cfg.Username != "" && cfg.Password != "" {
+		restyClient.SetBasicAuth(cfg.Username, cfg.Password)
+	}
+
+	conn := &connection{
+		client:   client,
+		resty:    restyClient,
+		baseURL:  baseURL,
+		username: cfg.Username,
+		password: cfg.Password,
+	}
 
 	// Test connection with retry (Elasticsearch might not be ready immediately)
 	// Use shorter retries to fail fast if Elasticsearch is not available
@@ -155,30 +178,23 @@ func (c *connection) DeleteDocument(ctx context.Context, index string, id string
 }
 
 func (c *connection) Search(ctx context.Context, index string, query map[string]interface{}) (map[string]interface{}, error) {
-	queryJSON, err := json.Marshal(query)
-	if err != nil {
-		return nil, fmt.Errorf("failed to marshal query: %w", err)
-	}
+	// Use resty for Search operations
+	url := fmt.Sprintf("/%s/_search", index)
 
-	req := esapi.SearchRequest{
-		Index: []string{index},
-		Body:  bytes.NewReader(queryJSON),
-	}
+	var result map[string]interface{}
+	resp, err := c.resty.R().
+		SetContext(ctx).
+		SetBody(query).
+		SetResult(&result).
+		Post(url)
 
-	res, err := req.Do(ctx, c.client)
 	if err != nil {
 		return nil, fmt.Errorf("failed to search: %w", err)
 	}
-	defer res.Body.Close()
 
-	if res.IsError() {
-		body, _ := io.ReadAll(res.Body)
-		return nil, fmt.Errorf("elasticsearch error: %s: %s", res.Status(), string(body))
-	}
-
-	var result map[string]interface{}
-	if err := json.NewDecoder(res.Body).Decode(&result); err != nil {
-		return nil, fmt.Errorf("failed to decode response: %w", err)
+	if resp.IsError() {
+		bodyStr := string(resp.Body())
+		return nil, fmt.Errorf("elasticsearch error: %s: %s", resp.Status(), bodyStr)
 	}
 
 	return result, nil

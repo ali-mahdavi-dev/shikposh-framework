@@ -6,6 +6,7 @@ require (
 	github.com/IBM/sarama v1.46.3
 	github.com/elastic/go-elasticsearch/v8 v8.19.0
 	github.com/go-playground/validator/v10 v10.28.0
+	github.com/go-resty/resty/v2 v2.17.0
 	github.com/gofiber/fiber/v3 v3.0.0-rc.2
 	github.com/golang-jwt/jwt/v5 v5.3.0
 	github.com/google/uuid v1.6.0
