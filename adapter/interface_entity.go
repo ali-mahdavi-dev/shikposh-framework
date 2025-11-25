@@ -10,7 +10,7 @@ type Entity interface {
 }
 
 type BaseEntity struct {
-	Events   []any `gorm:"-"`
+	Events   []any `json:",omitempty" gorm:"-"`
 	eventsMu sync.Mutex
 }
 
