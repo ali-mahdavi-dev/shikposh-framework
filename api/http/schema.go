@@ -3,9 +3,8 @@ package http
 type Direction string
 
 const (
-	ResBodyKey           = "res-body"
-	ASC        Direction = "ASC"
-	DESC       Direction = "DESC"
+	ASC  Direction = "ASC"
+	DESC Direction = "DESC"
 )
 
 type ResponseResult struct {

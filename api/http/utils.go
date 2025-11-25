@@ -157,7 +157,6 @@ func ResJSON(c fiber.Ctx, status int, v interface{}) error {
 	if err != nil {
 		return err
 	}
-	c.Set(ResBodyKey, string(buf))
 	c.Set(fiber.HeaderContentType, fiber.MIMEApplicationJSONCharsetUTF8)
 	c.Status(status)
 	return c.Send(buf)
