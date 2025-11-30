@@ -139,7 +139,7 @@ func (p *Processor) processEvent(ctx context.Context, event *OutboxEvent) error 
 		"event_type":     event.EventType,
 		"aggregate_type": event.AggregateType,
 		"aggregate_id":   event.AggregateID,
-		"payload":        event.Payload,
+		"payload":        map[string]interface{}(event.Payload), // Convert JSONBMap to map[string]interface{}
 		"created_at":     event.CreatedAt,
 	}
 
