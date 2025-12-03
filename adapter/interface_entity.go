@@ -1,10 +1,13 @@
 package adapter
 
-import (
-	"sync"
-)
+import "sync"
 
+// Entity is the base interface that all domain entities must implement.
+// GetID returns the primary identifier of the entity as uint64.
+// Each entity can have its own strong typedef for ID (e.g. UserID uint64)
+// and should convert it to uint64 in GetID.
 type Entity interface {
+	GetID() uint64
 	Event() []any
 	AddEvent(event any)
 }
