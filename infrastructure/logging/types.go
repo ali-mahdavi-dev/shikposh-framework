@@ -60,6 +60,7 @@ const (
 	FieldTypeString  FieldType = "string"
 	FieldTypeInt     FieldType = "int"
 	FieldTypeInt64   FieldType = "int64"
+	FieldTypeUint    FieldType = "uint"
 	FieldTypeFloat64 FieldType = "float64"
 	FieldTypeBool    FieldType = "bool"
 	FieldTypeError   FieldType = "error"
@@ -96,6 +97,7 @@ type Logger interface {
 	WithString(key, value string) Logger
 	WithInt(key string, value int) Logger
 	WithInt64(key string, value int64) Logger
+	WithUint(key string, value uint) Logger
 	WithFloat64(key string, value float64) Logger
 	WithBool(key string, value bool) Logger
 	WithError(err error) Logger

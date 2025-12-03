@@ -85,9 +85,6 @@ func (m *messageBus) AddCommandHandler(handlers ...commandeventhandler.CommandHa
 			return apperrors.Conflict("", fmt.Sprintf("command handler for %s already exists", cmdName))
 		}
 		m.handledCommands[cmdName] = handler
-		logging.Info("Command handler registered").
-			WithAny("command_name", cmdName).
-			Log()
 	}
 
 	return nil
@@ -100,9 +97,6 @@ func (m *messageBus) AddEventHandler(handlers ...commandeventhandler.EventHandle
 			return apperrors.Conflict("", fmt.Sprintf("event handler for %s already exists", eventName))
 		}
 		m.handledEvent[eventName] = handler
-		logging.Info("Event handler registered").
-			WithAny("event_name", eventName).
-			Log()
 	}
 
 	return nil
@@ -145,7 +139,8 @@ func (m *messageBus) HandleEvent(ctx context.Context, event any) error {
 		WithAny("event_name", eventName).
 		Log()
 
-	if _, ok := m.handledEvent[eventName]; !ok {
+	h, ok := m.handledEvent[eventName]
+	if !ok {
 		err := apperrors.NotFound("", fmt.Sprintf("event handler for %s not found", eventName))
 		logging.Error("Event handler not found").
 			WithAny("event_name", eventName).
@@ -154,7 +149,7 @@ func (m *messageBus) HandleEvent(ctx context.Context, event any) error {
 		return err
 	}
 
-	err := m.handledEvent[eventName].Handle(ctx, event)
+	err := h.Handle(ctx, event)
 	if err != nil {
 		logging.Error("Event handler failed").
 			WithAny("event_name", eventName).

@@ -157,6 +157,15 @@ func (l *loggerImpl) WithInt64(key string, value int64) Logger {
 	return l
 }
 
+func (l *loggerImpl) WithUint(key string, value uint) Logger {
+	l.fields = append(l.fields, LogField{
+		Key:   key,
+		Value: value,
+		Type:  FieldTypeUint,
+	})
+	return l
+}
+
 func (l *loggerImpl) WithFloat64(key string, value float64) Logger {
 	l.fields = append(l.fields, LogField{
 		Key:   key,
