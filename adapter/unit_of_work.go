@@ -92,21 +92,15 @@ func (uow *BaseUnitOfWork) Do(ctx context.Context, fc types.UowUseCase) error {
 		return nil
 	})
 
-	// If transaction failed, don't publish events
 	if err != nil {
 		uow.clearRepositories()
 		return err
 	}
 
-	// Transaction committed successfully, now publish events
-	// Each event gets its own context (derived from original context, without transaction)
 	if len(collectedEvents) > 0 {
 		var wg sync.WaitGroup
 		for _, event := range collectedEvents {
 			wg.Add(1)
-			// Create a new independent context for each event
-			// Derive from original context to preserve important values (request ID, user info, etc.)
-			// but create a fresh context instance for each event
 			eventCtx := context.WithValue(ctx, txKey{}, nil)
 			select {
 			case uow.eventCh <- EventWithWaitGroup{Event: event, Ctx: eventCtx, Wg: &wg}:
@@ -135,32 +129,17 @@ func (uow *BaseUnitOfWork) GetOrCreateRepository(
 	key string,
 	factory func(*gorm.DB) SeenedRepository,
 ) SeenedRepository {
-	uow.mu.RLock()
-	ctxRepos, ctxExists := uow.repositories[ctx]
-	if ctxExists {
-		if repo, ok := ctxRepos[key]; ok {
-			uow.mu.RUnlock()
-			return repo
-		}
-	}
-	uow.mu.RUnlock()
-
-	// Create new repository instance for this context
 	uow.mu.Lock()
 	defer uow.mu.Unlock()
 
-	// Double-check after acquiring write lock (another goroutine might have created it)
-	ctxRepos, ctxExists = uow.repositories[ctx]
-	if ctxExists {
-		if repo, ok := ctxRepos[key]; ok {
-			return repo
-		}
+	ctxRepos, ctxExists := uow.repositories[ctx]
+	if !ctxExists {
+		ctxRepos = make(map[string]SeenedRepository)
+		uow.repositories[ctx] = ctxRepos
 	}
 
-	// Initialize map if it doesn't exist
-	if !ctxExists {
-		uow.repositories[ctx] = make(map[string]SeenedRepository)
-		ctxRepos = uow.repositories[ctx]
+	if repo, ok := ctxRepos[key]; ok {
+		return repo
 	}
 
 	session := uow.GetSession(ctx)
